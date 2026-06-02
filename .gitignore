@@ -6,3 +6,10 @@ out/
 src/data/documents/*/
 *.log
 .DS_Store
+data/
+lib/
+output/
+source-docs/
+prototype.html
+config.json
+README.md
