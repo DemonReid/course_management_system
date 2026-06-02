@@ -33,18 +33,19 @@ export default function RegisterPage({ onSwitchToLogin }: RegisterPageProps) {
     setLoading(true)
 
     try {
-      const response = await fetch('/api/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name.trim(), password, department })
-      })
-
-      if (!response.ok) {
-        const data = await response.json()
-        throw new Error(data.error || '注册失败')
-      }
+      // Client-side registration using localStorage
+      const { addUser } = await import('@/lib/client-storage')
+      const newUser = await addUser(name.trim(), password, department)
 
       // Auto-login after successful registration
+      const userInfo = {
+        id: newUser.id,
+        name: newUser.name,
+        role: newUser.role,
+        department: newUser.department,
+      }
+      localStorage.setItem('currentUser', JSON.stringify(userInfo))
+      // Trigger login through context by re-calling login
       await login(name.trim(), password)
     } catch (err) {
       setError((err as Error).message)

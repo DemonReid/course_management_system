@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { Template } from '@/lib/types'
+import { uploadDocument } from '@/lib/client-storage'
 
 interface UploadModalProps {
   template: Template
@@ -26,30 +27,13 @@ export default function UploadModal({ template, onClose, onUploadSuccess }: Uplo
   }
 
   const handleUpload = async () => {
-    if (!file) return
+    if (!file || !user) return
 
     setUploading(true)
     setError('')
 
     try {
-      const formData = new FormData()
-      formData.append('file', file)
-      formData.append('templateName', template.name)
-
-      const response = await fetch('/api/documents', {
-        method: 'POST',
-        headers: {
-          'x-user-id': user?.id || '',
-          'x-user-name': user?.name || ''
-        },
-        body: formData
-      })
-
-      if (!response.ok) {
-        const data = await response.json()
-        throw new Error(data.error || '上传失败')
-      }
-
+      await uploadDocument(file, template.name, user.id, user.name)
       onUploadSuccess()
       onClose()
     } catch (err) {

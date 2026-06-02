@@ -39,22 +39,10 @@ export default function GenerateForm({ template, onBack }: GenerateFormProps) {
     setError(null)
 
     try {
-      const response = await fetch('/api/generate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          templateId: template.id,
-          userInput: formData,
-        }),
-      })
-
-      if (!response.ok) {
-        const data = await response.json()
-        throw new Error(data.error || '生成失败')
-      }
-
-      const data = await response.json()
-      setAiFields(data.aiFields)
+      // Client-side AI generation — calls MiniMax directly from browser
+      const { generateTemplateFields } = await import('@/lib/ai-client')
+      const aiFields = await generateTemplateFields(template, formData)
+      setAiFields(aiFields)
       setStep('review')
     } catch (err) {
       setError((err as Error).message)

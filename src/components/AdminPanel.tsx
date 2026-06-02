@@ -2,8 +2,15 @@
 
 import { useState, useEffect } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
+import {
+  getUsers,
+  saveUsers,
+  addUser,
+  type StoredUser,
+} from '@/lib/client-storage'
+import { hashPassword } from '@/lib/client-auth'
 
-interface User {
+interface UserDisplay {
   id: string
   name: string
   role: 'admin' | 'teacher'
@@ -13,7 +20,7 @@ interface User {
 
 export default function AdminPanel() {
   const { user, isAdmin } = useAuth()
-  const [users, setUsers] = useState<User[]>([])
+  const [users, setUsers] = useState<UserDisplay[]>([])
   const [newUserName, setNewUserName] = useState('')
   const [newUserPassword, setNewUserPassword] = useState('')
   const [newUserDept, setNewUserDept] = useState('预防医学教研室')
@@ -27,13 +34,17 @@ export default function AdminPanel() {
     }
   }, [isAdmin])
 
-  const fetchUsers = async () => {
+  const fetchUsers = () => {
     try {
-      const response = await fetch('/api/users', {
-        headers: { 'x-user-id': user?.id || '' }
-      })
-      const data = await response.json()
-      setUsers(data.users)
+      const usersData = getUsers()
+      const displayUsers = usersData.users.map((u: StoredUser) => ({
+        id: u.id,
+        name: u.name,
+        role: u.role,
+        department: u.department,
+        createdAt: u.createdAt,
+      }))
+      setUsers(displayUsers)
     } catch (error) {
       console.error('Failed to fetch users:', error)
     }
@@ -48,23 +59,7 @@ export default function AdminPanel() {
     setSuccess('')
 
     try {
-      const response = await fetch('/api/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-user-id': user?.id || ''
-        },
-        body: JSON.stringify({
-          name: newUserName.trim(),
-          password: newUserPassword.trim(),
-          department: newUserDept.trim()
-        })
-      })
-
-      if (!response.ok) {
-        const data = await response.json()
-        throw new Error(data.error || '添加失败')
-      }
+      await addUser(newUserName.trim(), newUserPassword.trim(), newUserDept.trim())
 
       setNewUserName('')
       setNewUserPassword('')
@@ -77,24 +72,18 @@ export default function AdminPanel() {
     }
   }
 
-  const handleDeleteUser = async (userId: string, userName: string) => {
+  const handleDeleteUser = (userId: string, userName: string) => {
     if (!confirm(`确定要删除用户 "${userName}" 吗？此操作不可撤销。`)) return
 
     try {
-      const response = await fetch(`/api/users?id=${userId}`, {
-        method: 'DELETE',
-        headers: { 'x-user-id': user?.id || '' }
-      })
-
-      if (response.ok) {
-        setSuccess(`用户 "${userName}" 已删除`)
-        fetchUsers()
-      } else {
-        const data = await response.json()
-        alert(data.error || '删除失败')
-      }
+      const usersData = getUsers()
+      usersData.users = usersData.users.filter((u) => u.id !== userId)
+      saveUsers(usersData)
+      setSuccess(`用户 "${userName}" 已删除`)
+      fetchUsers()
     } catch (error) {
       console.error('Delete failed:', error)
+      alert('删除失败')
     }
   }
 
@@ -106,26 +95,19 @@ export default function AdminPanel() {
     }
 
     try {
-      const response = await fetch('/api/users', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-user-id': user?.id || ''
-        },
-        body: JSON.stringify({
-          userId,
-          password: newPassword
-        })
-      })
-
-      if (response.ok) {
-        setSuccess(`用户 "${userName}" 的密码已重置`)
-      } else {
-        const data = await response.json()
-        alert(data.error || '重置失败')
+      const usersData = getUsers()
+      const userIndex = usersData.users.findIndex((u) => u.id === userId)
+      if (userIndex === -1) {
+        alert('用户不存在')
+        return
       }
+
+      usersData.users[userIndex].password = await hashPassword(newPassword)
+      saveUsers(usersData)
+      setSuccess(`用户 "${userName}" 的密码已重置`)
     } catch (error) {
       console.error('Reset failed:', error)
+      alert('重置失败')
     }
   }
 

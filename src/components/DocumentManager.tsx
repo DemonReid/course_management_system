@@ -2,37 +2,28 @@
 
 import { useState, useEffect } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
-
-interface Document {
-  id: string
-  filename: string
-  templateName: string
-  uploaderName: string
-  uploadDate: string
-  size: number
-}
+import {
+  getFilteredDocuments,
+  deleteDocument,
+  type StoredDocument,
+} from '@/lib/client-storage'
 
 export default function DocumentManager() {
   const { user, isAdmin } = useAuth()
-  const [documents, setDocuments] = useState<Document[]>([])
-  const [grouped, setGrouped] = useState<{ [key: string]: Document[] }>({})
+  const [documents, setDocuments] = useState<StoredDocument[]>([])
+  const [grouped, setGrouped] = useState<Record<string, StoredDocument[]>>({})
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetchDocuments()
   }, [])
 
-  const fetchDocuments = async () => {
+  const fetchDocuments = () => {
     try {
-      const response = await fetch('/api/documents', {
-        headers: {
-          'x-user-id': user?.id || '',
-          'x-user-role': user?.role || ''
-        }
-      })
-      const data = await response.json()
-      setDocuments(data.documents)
-      setGrouped(data.grouped)
+      if (!user) return
+      const result = getFilteredDocuments(user.id, user.role)
+      setDocuments(result.documents)
+      setGrouped(result.grouped)
     } catch (error) {
       console.error('Failed to fetch documents:', error)
     } finally {
@@ -40,25 +31,15 @@ export default function DocumentManager() {
     }
   }
 
-  const handleDelete = async (docId: string) => {
+  const handleDelete = (docId: string) => {
     if (!confirm('确定要删除此文档吗？')) return
 
     try {
-      const response = await fetch(`/api/documents?id=${docId}`, {
-        method: 'DELETE',
-        headers: {
-          'x-user-id': user?.id || '',
-          'x-user-role': user?.role || ''
-        }
-      })
-
-      if (response.ok) {
-        fetchDocuments()
-      } else {
-        alert('删除失败')
-      }
+      deleteDocument(docId)
+      fetchDocuments()
     } catch (error) {
       console.error('Delete failed:', error)
+      alert('删除失败')
     }
   }
 

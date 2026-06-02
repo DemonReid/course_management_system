@@ -1,6 +1,13 @@
 'use client'
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import { verifyPassword } from '@/lib/client-auth'
+import {
+  initClientStorage,
+  getUsers,
+  saveUsers,
+  type StoredUser,
+} from '@/lib/client-storage'
 
 interface User {
   id: string
@@ -22,28 +29,46 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
 
   useEffect(() => {
-    // Check for saved session
-    const savedUser = localStorage.getItem('currentUser')
-    if (savedUser) {
-      setUser(JSON.parse(savedUser))
-    }
+    // Initialize client storage on mount
+    initClientStorage().then(() => {
+      // Check for saved session
+      const savedUser = localStorage.getItem('currentUser')
+      if (savedUser) {
+        try {
+          setUser(JSON.parse(savedUser))
+        } catch {
+          localStorage.removeItem('currentUser')
+        }
+      }
+    })
   }, [])
 
   const login = async (name: string, password: string) => {
-    const response = await fetch('/api/auth', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, password })
-    })
+    const usersData = getUsers()
+    const storedUser = usersData.users.find((u: StoredUser) => u.name === name)
 
-    if (!response.ok) {
-      const data = await response.json()
-      throw new Error(data.error || '登录失败')
+    if (!storedUser) {
+      throw new Error('用户不存在，请先注册')
     }
 
-    const data = await response.json()
-    setUser(data.user)
-    localStorage.setItem('currentUser', JSON.stringify(data.user))
+    if (!storedUser.password) {
+      throw new Error('该账户未设置密码，请联系管理员')
+    }
+
+    const valid = await verifyPassword(password, storedUser.password)
+    if (!valid) {
+      throw new Error('密码错误')
+    }
+
+    const userInfo: User = {
+      id: storedUser.id,
+      name: storedUser.name,
+      role: storedUser.role,
+      department: storedUser.department,
+    }
+
+    setUser(userInfo)
+    localStorage.setItem('currentUser', JSON.stringify(userInfo))
   }
 
   const logout = () => {

@@ -1,10 +1,3 @@
 {
-  "buildCommand": "cd app && npm run build",
-  "outputDirectory": "app/.next",
-  "installCommand": "cd app && npm install",
-  "framework": "nextjs",
-  "env": {
-    "DATA_DIR": "/tmp/doc-data",
-    "MINIMAX_API_KEY": "sk-cp--CSYwdIs943PY6hJevoJ08Ypg1jBaerYkbwe-qwfrFhz8IYsUUtrjJx5Q_0FWYfnmdPXPY_PS7WwY7bh3XEwGBj3EBDUazGMXKpX-DXB_SVai0hz_KqUoIA"
-  }
+  "framework": "nextjs"
 }
