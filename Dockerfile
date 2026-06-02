@@ -17,17 +17,16 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 ENV HOSTNAME="0.0.0.0"
-ENV PORT=3000
 
 # Copy standalone server + static assets
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 
-# Copy startup script (initializes data volume + starts server)
+# Copy startup script (initializes data + starts server)
 COPY start.js ./start.js
 
-# Create persistent data volume mount point
+# Create data directory
 RUN mkdir -p /data/documents
 
 EXPOSE 3000

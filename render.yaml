@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: doc-management-system
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: DATA_DIR
+        value: /data
+      - key: MINIMAX_API_KEY
+        sync: false
