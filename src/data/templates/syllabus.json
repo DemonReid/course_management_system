@@ -1,0 +1,88 @@
+{
+  "id": "syllabus",
+  "name": "教学大纲",
+  "description": "课程教学大纲，含课程目标、毕业要求支撑、教学内容与学时分配",
+  "priority": "P2",
+  "category": "教学准备",
+  "checkPhase": [
+    "期前"
+  ],
+  "aiAutomationLevel": "reference",
+  "estimatedTokens": 0,
+  "fields": [
+    {
+      "key": "courseName",
+      "label": "课程名称",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "courseCode",
+      "label": "课程代码",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "courseType",
+      "label": "课程性质",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "totalHours",
+      "label": "总学时",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "credits",
+      "label": "学分",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "examMethod",
+      "label": "考核方式",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "department",
+      "label": "开课单位",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "targetMajor",
+      "label": "适用专业",
+      "type": "text",
+      "required": true
+    }
+  ],
+  "sections": [
+    {
+      "title": "基本信息",
+      "fields": [
+        "courseName",
+        "courseCode",
+        "courseType",
+        "totalHours",
+        "credits",
+        "examMethod",
+        "department",
+        "targetMajor"
+      ]
+    }
+  ],
+  "aiSystemPrompt": null,
+  "sampleData": {
+    "courseName": "预防医学",
+    "courseCode": "2401142",
+    "courseType": "专业限选课",
+    "totalHours": "36",
+    "credits": "2.0",
+    "examMethod": "考查",
+    "department": "基础医学院",
+    "targetMajor": "食品营养与健康"
+  }
+}

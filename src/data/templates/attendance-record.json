@@ -1,0 +1,50 @@
+{
+  "id": "attendance-record",
+  "name": "考勤表",
+  "description": "考勤表或学习通签到数据",
+  "priority": "P3",
+  "category": "过程性考核",
+  "checkPhase": [
+    "期末"
+  ],
+  "aiAutomationLevel": "low",
+  "estimatedTokens": 0,
+  "fields": [
+    {
+      "key": "courseName",
+      "label": "课程名称",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：预防医学"
+    },
+    {
+      "key": "className",
+      "label": "班级",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：食品营养与健康2024班"
+    },
+    {
+      "key": "note",
+      "label": "说明",
+      "type": "longtext",
+      "required": false,
+      "defaultValue": "考勤表和学习通签到数据",
+      "rows": 2
+    }
+  ],
+  "sections": [
+    {
+      "title": "考勤",
+      "fields": [
+        "courseName",
+        "className",
+        "note"
+      ]
+    }
+  ],
+  "aiSystemPrompt": null,
+  "sampleData": {
+    "note": "考勤表，和（或）学习通签到的数据或截图。"
+  }
+}

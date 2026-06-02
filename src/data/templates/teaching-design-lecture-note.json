@@ -1,0 +1,59 @@
+{
+  "id": "teaching-design-lecture-note",
+  "name": "教学设计和讲稿说明",
+  "description": "教学设计和讲稿材料的说明",
+  "priority": "P2",
+  "category": "教学检查",
+  "checkPhase": [
+    "期中",
+    "期末"
+  ],
+  "aiAutomationLevel": "high",
+  "estimatedTokens": 300,
+  "fields": [
+    {
+      "key": "semester",
+      "label": "学期",
+      "type": "text",
+      "required": true,
+      "autoFill": "currentSemester"
+    },
+    {
+      "key": "checkPhase",
+      "label": "检查阶段",
+      "type": "select",
+      "required": true,
+      "options": [
+        "期中",
+        "期末"
+      ]
+    },
+    {
+      "key": "description",
+      "label": "说明内容",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 3
+    }
+  ],
+  "sections": [
+    {
+      "title": "基本信息",
+      "fields": [
+        "semester",
+        "checkPhase"
+      ]
+    },
+    {
+      "title": "说明",
+      "fields": [
+        "description"
+      ]
+    }
+  ],
+  "aiSystemPrompt": "你是贵州中医药大学预防医学教研室的教师，需要撰写教学设计和讲稿材料的说明。简短说明即可，50-150字。",
+  "sampleData": {
+    "description": "教学检查的教学设计和讲稿，是按教学进度表进行的各章节教学设计和讲稿内容。"
+  }
+}

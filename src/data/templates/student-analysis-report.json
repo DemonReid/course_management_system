@@ -1,0 +1,157 @@
+{
+  "id": "student-analysis-report",
+  "name": "学情分析报告",
+  "description": "学期学情分析，含学生基础知识、学习态度、理解能力、授课方式意见等",
+  "priority": "P0",
+  "category": "过程性考核",
+  "checkPhase": [
+    "期前",
+    "期中",
+    "期末"
+  ],
+  "aiAutomationLevel": "high",
+  "estimatedTokens": 2000,
+  "fields": [
+    {
+      "key": "courseName",
+      "label": "课程名称",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：预防医学"
+    },
+    {
+      "key": "className",
+      "label": "班级",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：食品营养与健康2024班"
+    },
+    {
+      "key": "teacherName",
+      "label": "任课教师",
+      "type": "text",
+      "required": true,
+      "autoFill": "currentUser"
+    },
+    {
+      "key": "semester",
+      "label": "学期",
+      "type": "text",
+      "required": true,
+      "autoFill": "currentSemester"
+    },
+    {
+      "key": "department",
+      "label": "教师所在院部/教研室",
+      "type": "text",
+      "required": true,
+      "defaultValue": "基础医学院、公共卫生学院/预防医学教研室"
+    },
+    {
+      "key": "totalHours",
+      "label": "总学时",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：36学时"
+    },
+    {
+      "key": "theoryHours",
+      "label": "理论学时",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：36学时"
+    },
+    {
+      "key": "practiceHours",
+      "label": "实践学时",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：0"
+    },
+    {
+      "key": "basicKnowledge_attitude_interest",
+      "label": "学生的基础知识、学习态度、学习兴趣",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 6
+    },
+    {
+      "key": "understandingAbility_methods",
+      "label": "学生的理解能力、学习方法等",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 6
+    },
+    {
+      "key": "teachingSuggestions",
+      "label": "学生对授课方式的意见及建议",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 4
+    },
+    {
+      "key": "otherAspects",
+      "label": "其他方面",
+      "type": "longtext",
+      "required": false,
+      "aiGenerated": true,
+      "rows": 3
+    },
+    {
+      "key": "conclusion_measures",
+      "label": "分析结论及相应措施",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 6
+    }
+  ],
+  "sections": [
+    {
+      "title": "基本信息",
+      "fields": [
+        "courseName",
+        "className",
+        "teacherName",
+        "semester",
+        "department",
+        "totalHours",
+        "theoryHours",
+        "practiceHours"
+      ]
+    },
+    {
+      "title": "学情分析",
+      "fields": [
+        "basicKnowledge_attitude_interest",
+        "understandingAbility_methods",
+        "teachingSuggestions",
+        "otherAspects"
+      ]
+    },
+    {
+      "title": "分析结论",
+      "fields": [
+        "conclusion_measures"
+      ]
+    }
+  ],
+  "aiSystemPrompt": "你是贵州中医药大学预防医学教研室的教师，需要撰写一份学期学情分析报告。\n\n要求：\n1. 基于该班级的实际情况进行分析，不能泛泛而谈\n2. 基础知识部分要结合该班级已学课程和记忆程度来写\n3. 理解能力部分要分析面对专业术语时的理解短板\n4. 授课方式建议要具体，如案例式教学、多媒体+板书等\n5. 分析结论要提出具体的教学改进措施\n6. 语言风格参考：客观、数据支撑、有理有据\n7. 总字数800-1500字",
+  "sampleData": {
+    "courseName": "预防医学",
+    "className": "养老服务管理2023班",
+    "teacherName": "彭芳",
+    "semester": "2025-2026学年第1学期",
+    "department": "基础医学院、公共卫生学院/预防医学教研室",
+    "totalHours": "36学时",
+    "theoryHours": "36学时",
+    "practiceHours": "0",
+    "basicKnowledge_attitude_interest": "已学习基础医学概论、临床医学概论和社会医学课程，从调查统计来看，对已学课程内容记忆程度，63.6%的学生\"有点印象\"，22.1%\"基本有印象\"，14.3%\"几乎没有印象\"，无学生达到\"很深刻\"，说明基础知识掌握薄弱且不系统。大部分学生参与了课前问卷，反映出对课程学习有基本的配合度。",
+    "understandingAbility_methods": "学生普遍反映专业术语晦涩难懂、抽象理论难以理解，对知识理解不到位，说明面对专业知识时，理解能力存在短板。学习方法上存在明显不足，主要表现为学习目标不明确、抓不住课程重点、知识体系难以建构等。",
+    "teachingSuggestions": "多数同学希望采用案例式教学法，反对照本宣科，强调结合生活案例和专业实践，让知识更易理解和应用。偏好老师采用\"多媒体+板书\"结合的方式进行授课。",
+    "conclusion_measures": "学生仅接触少量专业基础课，知识体系碎片化，对已学内容记忆模糊。拟采用课前发放教学大纲和各章节知识点，通过学习通线上随堂练习帮助学生回顾巩固。结合案例讲解专业术语，搭建基础与课程内容的桥梁。"
+  }
+}

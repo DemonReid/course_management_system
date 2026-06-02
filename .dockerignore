@@ -1,0 +1,10 @@
+node_modules
+.next
+.git
+.env
+.env.local
+src/data/documents/*
+!src/data/documents/metadata.json
+*.log
+.DS_Store
+README.md

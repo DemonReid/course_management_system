@@ -1,0 +1,145 @@
+{
+  "id": "answer-card-cover",
+  "name": "答题卡专用信封封面",
+  "description": "客观化考核材料专用袋封面",
+  "priority": "P3",
+  "category": "试卷管理",
+  "checkPhase": [
+    "期末"
+  ],
+  "aiAutomationLevel": "low",
+  "estimatedTokens": 200,
+  "fields": [
+    {
+      "key": "level",
+      "label": "层次",
+      "type": "text",
+      "required": true,
+      "defaultValue": "本科",
+      "placeholder": "如：本科"
+    },
+    {
+      "key": "examType",
+      "label": "考试类别",
+      "type": "select",
+      "required": true,
+      "options": [
+        "正考",
+        "补考",
+        "重修",
+        "毕业考",
+        "结业换毕业",
+        "其他"
+      ]
+    },
+    {
+      "key": "subject",
+      "label": "考试（考查）科目",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "major",
+      "label": "专业",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "grade",
+      "label": "级",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "classNo",
+      "label": "班",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "examDate",
+      "label": "考核日期",
+      "type": "date",
+      "required": true
+    },
+    {
+      "key": "cardCount",
+      "label": "答题卡份数",
+      "type": "number",
+      "required": true
+    },
+    {
+      "key": "expectedCount",
+      "label": "应考人数",
+      "type": "number",
+      "required": true
+    },
+    {
+      "key": "absentCount",
+      "label": "缺考人数",
+      "type": "number",
+      "required": true,
+      "defaultValue": 0
+    },
+    {
+      "key": "actualCount",
+      "label": "实考人数",
+      "type": "number",
+      "required": true
+    },
+    {
+      "key": "department",
+      "label": "任课院（部）、教研室",
+      "type": "text",
+      "required": true,
+      "defaultValue": "基础医学院、公共卫生学院/预防医学教研室"
+    },
+    {
+      "key": "teacherSignature",
+      "label": "任课教师签名",
+      "type": "text",
+      "required": true,
+      "autoFill": "currentUser"
+    },
+    {
+      "key": "bindDate",
+      "label": "装订日期",
+      "type": "date",
+      "required": true,
+      "autoFill": "today"
+    }
+  ],
+  "sections": [
+    {
+      "title": "考试信息",
+      "fields": [
+        "level",
+        "examType",
+        "subject",
+        "major",
+        "grade",
+        "classNo",
+        "examDate"
+      ]
+    },
+    {
+      "title": "人数统计",
+      "fields": [
+        "cardCount",
+        "expectedCount",
+        "absentCount",
+        "actualCount"
+      ]
+    },
+    {
+      "title": "签章",
+      "fields": [
+        "department",
+        "teacherSignature",
+        "bindDate"
+      ]
+    }
+  ],
+  "aiSystemPrompt": null,
+  "sampleData": {}
+}

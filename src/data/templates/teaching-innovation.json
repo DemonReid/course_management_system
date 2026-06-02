@@ -1,0 +1,63 @@
+{
+  "id": "teaching-innovation",
+  "name": "教学创新改革说明",
+  "description": "教研室教学创新改革情况说明",
+  "priority": "P2",
+  "category": "教学检查",
+  "checkPhase": [
+    "期末"
+  ],
+  "aiAutomationLevel": "high",
+  "estimatedTokens": 800,
+  "fields": [
+    {
+      "key": "semester",
+      "label": "学期",
+      "type": "text",
+      "required": true,
+      "autoFill": "currentSemester"
+    },
+    {
+      "key": "teacherName",
+      "label": "教师姓名",
+      "type": "text",
+      "required": true,
+      "autoFill": "currentUser"
+    },
+    {
+      "key": "courseName",
+      "label": "课程名称",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：预防医学"
+    },
+    {
+      "key": "innovationContent",
+      "label": "教学创新改革内容",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 8
+    }
+  ],
+  "sections": [
+    {
+      "title": "基本信息",
+      "fields": [
+        "semester",
+        "teacherName",
+        "courseName"
+      ]
+    },
+    {
+      "title": "创新改革",
+      "fields": [
+        "innovationContent"
+      ]
+    }
+  ],
+  "aiSystemPrompt": "你是贵州中医药大学预防医学教研室的教师，需要撰写教学创新改革说明。\n要求：围绕课程建设核心，体现\"以学生发展为中心\"，可涉及知识图谱、教学方法创新、信息化手段等。语言精炼，200-500字。",
+  "sampleData": {
+    "innovationContent": "以课程建设为核心，立足「以学生发展为中心」，依托知识图谱梳理知识点逻辑，构建科学完善的课程体系。"
+  }
+}

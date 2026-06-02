@@ -1,0 +1,273 @@
+{
+  "id": "teaching-design",
+  "name": "教学设计（教案）",
+  "description": "贵州中医药大学教学设计与实施方案，包含教学目标、学情分析、教学思路、组织实施等完整内容",
+  "priority": "P0",
+  "category": "教学设计",
+  "checkPhase": [
+    "期前"
+  ],
+  "aiAutomationLevel": "high",
+  "estimatedTokens": 4000,
+  "fields": [
+    {
+      "key": "courseName",
+      "label": "课程名称",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：预防医学"
+    },
+    {
+      "key": "targetClass",
+      "label": "授课专业及班级",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：食品营养与健康2024班"
+    },
+    {
+      "key": "teacherName",
+      "label": "教师姓名",
+      "type": "text",
+      "required": true,
+      "autoFill": "currentUser"
+    },
+    {
+      "key": "semester",
+      "label": "授课时间",
+      "type": "text",
+      "required": true,
+      "autoFill": "currentSemester"
+    },
+    {
+      "key": "department",
+      "label": "院系、教研室",
+      "type": "text",
+      "required": true,
+      "defaultValue": "基础医学院、公共卫生学院 预防医学教研室"
+    },
+    {
+      "key": "textbook",
+      "label": "教材名称及版次",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：预防医学 第2版"
+    },
+    {
+      "key": "chapter",
+      "label": "授课章节及起止页码",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：第一章 绪论 P1-13"
+    },
+    {
+      "key": "hours",
+      "label": "单元用学时数",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：2学时"
+    },
+    {
+      "key": "knowledgeObjectives",
+      "label": "知识目标",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "aiHint": "包含掌握、熟悉、了解三级教学要求",
+      "rows": 6
+    },
+    {
+      "key": "abilityObjectives",
+      "label": "能力目标",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "aiHint": "学生能够运用的能力",
+      "rows": 4
+    },
+    {
+      "key": "qualityObjectives",
+      "label": "素质目标（含思政）",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "aiHint": "专业素质和思政目标",
+      "rows": 4
+    },
+    {
+      "key": "keyPoints",
+      "label": "教学重点",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 2
+    },
+    {
+      "key": "difficultPoints",
+      "label": "教学难点",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 2
+    },
+    {
+      "key": "studentAnalysis_basicKnowledge",
+      "label": "学情分析-学生已具备的基础知识",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 4
+    },
+    {
+      "key": "studentAnalysis_learningAbility",
+      "label": "学情分析-学习能力或需求",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 4
+    },
+    {
+      "key": "studentAnalysis_habits",
+      "label": "学情分析-学习习惯、方式、优点、不足",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 6
+    },
+    {
+      "key": "teachingApproach",
+      "label": "教学思路",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "aiHint": "课前准备→课堂导入→知识点讲解→实践操作→归纳总结",
+      "rows": 8
+    },
+    {
+      "key": "teachingMethod",
+      "label": "教学方式",
+      "type": "select",
+      "required": true,
+      "options": [
+        "讲授",
+        "线上线下混合",
+        "案例教学法",
+        "PBL",
+        "讲授+案例+讨论"
+      ]
+    },
+    {
+      "key": "teachingProcess",
+      "label": "教学组织过程（含时间分配）",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "aiHint": "列出教学模块及时间分配，以及每个模块的教学内容和方法",
+      "rows": 12
+    },
+    {
+      "key": "boardDesign",
+      "label": "板书设计",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "aiHint": "黑板上重点展示的内容",
+      "rows": 3
+    },
+    {
+      "key": "learningResources",
+      "label": "学习资源",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "aiHint": "参考书籍、网络资源",
+      "rows": 3
+    },
+    {
+      "key": "teachingReflection",
+      "label": "教学反思",
+      "type": "longtext",
+      "required": false,
+      "aiGenerated": true,
+      "aiHint": "课后填写：是否达到教学目标，好的情况和有待改进的情况",
+      "rows": 6
+    }
+  ],
+  "sections": [
+    {
+      "title": "基本信息",
+      "fields": [
+        "courseName",
+        "targetClass",
+        "teacherName",
+        "semester",
+        "department",
+        "textbook",
+        "chapter",
+        "hours"
+      ]
+    },
+    {
+      "title": "教学目标",
+      "fields": [
+        "knowledgeObjectives",
+        "abilityObjectives",
+        "qualityObjectives"
+      ]
+    },
+    {
+      "title": "教学要点",
+      "fields": [
+        "keyPoints",
+        "difficultPoints"
+      ]
+    },
+    {
+      "title": "学情分析",
+      "fields": [
+        "studentAnalysis_basicKnowledge",
+        "studentAnalysis_learningAbility",
+        "studentAnalysis_habits"
+      ]
+    },
+    {
+      "title": "教学思路",
+      "fields": [
+        "teachingApproach"
+      ]
+    },
+    {
+      "title": "教学方式与组织",
+      "fields": [
+        "teachingMethod",
+        "teachingProcess"
+      ]
+    },
+    {
+      "title": "板书设计与学习资源",
+      "fields": [
+        "boardDesign",
+        "learningResources"
+      ]
+    },
+    {
+      "title": "教学反思（课后填写）",
+      "fields": [
+        "teachingReflection"
+      ]
+    }
+  ],
+  "aiSystemPrompt": "你是一位贵州中医药大学预防医学教研室的资深教师，擅长撰写规范的教学设计文档。你需要根据用户提供的课程信息，生成一份符合学校格式要求的教学设计与实施方案。\n\n要求：\n1. 语言风格：学术规范、条理清晰，体现预防医学专业特色\n2. 知识目标必须包含三级教学要求：掌握、熟悉、了解\n3. 能力目标要具体可测量，体现学生的实践应用能力\n4. 素质目标必须包含课程思政元素（如健康中国2030、公共卫生责任等）\n5. 学情分析要具体，不能泛泛而谈，要结合该班级学生的实际情况\n6. 教学思路要按照\"课前准备→课堂导入→知识点讲解→实践操作→归纳总结\"的结构\n7. 教学组织过程要有明确的时间分配（分钟数）\n8. 总字数控制在3000-5000字",
+  "sampleData": {
+    "courseName": "预防医学",
+    "targetClass": "食品营养与健康2024班",
+    "teacherName": "彭芳",
+    "semester": "2025-2026-2",
+    "department": "基础医学院、公共卫生学院 预防医学教研室",
+    "textbook": "预防医学 第2版",
+    "chapter": "第一章 绪论 P1-13",
+    "hours": "2学时",
+    "knowledgeObjectives": "一、知识目标\n1.掌握：预防医学的概念、研究内容、特点、基本观点；健康观及影响健康的因素；三级预防策略。\n2.熟悉：医学模式和预防医学模型；疾病自然史；全球及我国卫生战略目标。\n3.了解：预防医学的发展简史；五层次预防；学习预防医学的意义。",
+    "abilityObjectives": "二、能力目标\n1.能够准确区分预防医学与公共卫生的关系，运用预防医学基本观点分析生活中的公共卫生现象，提升理论应用能力。\n2.能结合三级预防策略及五层次预防，针对常见疾病初步提出基础的预防措施，培养公共卫生思维和实践应用能力。\n3.能够识别影响健康的主要因素，运用现代健康观分析个体及群体健康问题，具备初步的健康评估能力。",
+    "qualityObjectives": "三、素质目标\n1.专业素质：树立「预防为主、防治结合」的公共卫生理念，明确预防医学在国家公共卫生体系中的核心作用。\n2.思政目标：结合「健康中国2030」战略，理解预防医学对于实现全民健康目标的重要贡献，激发对专业的热爱；培养社会责任感和使命感。"
+  }
+}

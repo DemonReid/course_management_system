@@ -1,0 +1,67 @@
+{
+  "id": "teaching-research-activities",
+  "name": "教研活动开展情况说明",
+  "description": "教研活动（含集体备课）参与情况说明",
+  "priority": "P2",
+  "category": "教学检查",
+  "checkPhase": [
+    "期中",
+    "期末"
+  ],
+  "aiAutomationLevel": "high",
+  "estimatedTokens": 400,
+  "fields": [
+    {
+      "key": "semester",
+      "label": "学期",
+      "type": "text",
+      "required": true,
+      "autoFill": "currentSemester"
+    },
+    {
+      "key": "checkPhase",
+      "label": "检查阶段",
+      "type": "select",
+      "required": true,
+      "options": [
+        "期中",
+        "期末"
+      ]
+    },
+    {
+      "key": "teacherName",
+      "label": "教师姓名",
+      "type": "text",
+      "required": true,
+      "autoFill": "currentUser"
+    },
+    {
+      "key": "activitiesDescription",
+      "label": "教研活动开展情况",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 4
+    }
+  ],
+  "sections": [
+    {
+      "title": "基本信息",
+      "fields": [
+        "semester",
+        "checkPhase",
+        "teacherName"
+      ]
+    },
+    {
+      "title": "教研活动",
+      "fields": [
+        "activitiesDescription"
+      ]
+    }
+  ],
+  "aiSystemPrompt": "你是贵州中医药大学预防医学教研室的教师，需要撰写教研活动开展情况说明。\n要求：说明参与的教研活动类型（线上学习通教研活动、集体备课等），主持及参与情况。100-300字。",
+  "sampleData": {
+    "activitiesDescription": "教研活动开展情况：针对每位老师主要是参与线上学习通「小组」里「教研活动」、「集体备课」板块的主持及评论区回复。"
+  }
+}

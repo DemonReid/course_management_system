@@ -1,0 +1,53 @@
+{
+  "id": "teaching-feedback",
+  "name": "教学反馈表",
+  "description": "教学反馈汇总表",
+  "priority": "P3",
+  "category": "过程性考核",
+  "checkPhase": [
+    "期末"
+  ],
+  "aiAutomationLevel": "medium",
+  "estimatedTokens": 500,
+  "fields": [
+    {
+      "key": "courseName",
+      "label": "课程名称",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：预防医学"
+    },
+    {
+      "key": "className",
+      "label": "班级",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：食品营养与健康2024班"
+    },
+    {
+      "key": "feedbackContent",
+      "label": "反馈内容汇总",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 6
+    }
+  ],
+  "sections": [
+    {
+      "title": "基本信息",
+      "fields": [
+        "courseName",
+        "className"
+      ]
+    },
+    {
+      "title": "反馈内容",
+      "fields": [
+        "feedbackContent"
+      ]
+    }
+  ],
+  "aiSystemPrompt": "你是贵州中医药大学预防医学教研室的教师，需要汇总教学反馈。",
+  "sampleData": {}
+}

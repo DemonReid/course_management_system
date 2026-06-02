@@ -1,0 +1,106 @@
+{
+  "id": "exam-question-distribution",
+  "name": "结果性考核试题分布双向检查表",
+  "description": "按章节和题型分布的双向检查表，含总结说明",
+  "priority": "P1",
+  "category": "试卷管理",
+  "checkPhase": [
+    "期中",
+    "期末"
+  ],
+  "aiAutomationLevel": "medium",
+  "estimatedTokens": 1000,
+  "fields": [
+    {
+      "key": "courseName",
+      "label": "考核科目",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：预防医学"
+    },
+    {
+      "key": "totalHours",
+      "label": "教学课时",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "targetClass",
+      "label": "试卷使用年级及专业",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "paperType",
+      "label": "试卷类型",
+      "type": "select",
+      "required": true,
+      "options": [
+        "A卷",
+        "B卷"
+      ]
+    },
+    {
+      "key": "chapters",
+      "label": "章节列表（JSON数组）",
+      "type": "json",
+      "required": true,
+      "aiGenerated": true,
+      "aiHint": "每章包含各题型题目数和分值"
+    },
+    {
+      "key": "summary",
+      "label": "总结说明",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 6
+    },
+    {
+      "key": "questionSetter",
+      "label": "出题人",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "reviewer",
+      "label": "试卷审核人",
+      "type": "text",
+      "required": true,
+      "autoFill": "currentUser"
+    }
+  ],
+  "sections": [
+    {
+      "title": "基本信息",
+      "fields": [
+        "courseName",
+        "totalHours",
+        "targetClass",
+        "paperType",
+        "questionSetter",
+        "reviewer"
+      ]
+    },
+    {
+      "title": "试题分布",
+      "fields": [
+        "chapters"
+      ]
+    },
+    {
+      "title": "总结",
+      "fields": [
+        "summary"
+      ]
+    }
+  ],
+  "aiSystemPrompt": "你是贵州中医药大学预防医学教研室的教师，需要撰写结果性考核试题分布双向检查表的总结说明。\n\n要求：\n1. 说明命题依据（教学大纲）\n2. 说明掌握/熟悉/了解内容的比例（约70%/20%/10%）\n3. 说明试卷难易程度\n4. 说明题型及其考查目的\n5. 说明知识点覆盖范围\n6. 总字数200-400字",
+  "sampleData": {
+    "courseName": "预防医学",
+    "totalHours": "36",
+    "targetClass": "2022级中医养生学",
+    "paperType": "A卷",
+    "summary": "1．本试卷根据《贵州中医药大学本科学生学业考核管理规定（2024年修订版）》的相关规定，结合预防医学教学大纲要求进行命题，考核试题中掌握内容约70%，熟悉内容约20%，了解内容约10%；自主学习内容约10%。\n2．试卷难易程度说明：没有超纲题，题目难度适中。\n3．考核试题知识点覆盖了36学时《预防医学》全部教学章节。"
+  }
+}

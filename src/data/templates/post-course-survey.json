@@ -1,0 +1,31 @@
+{
+  "id": "post-course-survey",
+  "name": "结课调查问卷",
+  "description": "结课后调查问卷",
+  "priority": "P3",
+  "category": "过程性考核",
+  "checkPhase": [
+    "期末"
+  ],
+  "aiAutomationLevel": "low",
+  "estimatedTokens": 0,
+  "fields": [
+    {
+      "key": "className",
+      "label": "班级",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：食品营养与健康2024班"
+    }
+  ],
+  "sections": [
+    {
+      "title": "问卷信息",
+      "fields": [
+        "className"
+      ]
+    }
+  ],
+  "aiSystemPrompt": null,
+  "sampleData": {}
+}

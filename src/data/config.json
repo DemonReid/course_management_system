@@ -1,0 +1,17 @@
+{
+  "llm": {
+    "provider": "minimax",
+    "baseUrl": "https://api.minimaxi.com/anthropic",
+    "model": "MiniMax-M2.7",
+    "apiKey": "sk-cp--CSYwdIs943PY6hJevoJ08Ypg1jBaerYkbwe-qwfrFhz8IYsUUtrjJx5Q_0FWYfnmdPXPY_PS7WwY7bh3XEwGBj3EBDUazGMXKpX-DXB_SVai0hz_KqUoIA",
+    "maxTokens": 8192,
+    "temperature": 0.7
+  },
+  "app": {
+    "name": "贵州中医药大学预防医学教研室文档管理系统",
+    "nameRu": "Септик формализма",
+    "defaultTeacher": "彭芳",
+    "defaultDepartment": "基础医学院、公共卫生学院 预防医学教研室",
+    "defaultSemester": "2025-2026学年第2学期"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "id": "teacher-evaluation-result",
+  "name": "教师评价结果",
+  "description": "教师评价结果汇总表",
+  "priority": "P2",
+  "category": "过程性考核",
+  "checkPhase": [
+    "期末"
+  ],
+  "aiAutomationLevel": "medium",
+  "estimatedTokens": 500,
+  "fields": [
+    {
+      "key": "courseName",
+      "label": "课程名称",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：预防医学"
+    },
+    {
+      "key": "className",
+      "label": "班级",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：食品营养与健康2024班"
+    },
+    {
+      "key": "teacherName",
+      "label": "任课教师",
+      "type": "text",
+      "required": true,
+      "autoFill": "currentUser"
+    },
+    {
+      "key": "evaluationSummary",
+      "label": "评价结果汇总",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 8
+    }
+  ],
+  "sections": [
+    {
+      "title": "基本信息",
+      "fields": [
+        "courseName",
+        "className",
+        "teacherName"
+      ]
+    },
+    {
+      "title": "评价结果",
+      "fields": [
+        "evaluationSummary"
+      ]
+    }
+  ],
+  "aiSystemPrompt": "你是贵州中医药大学预防医学教研室的教师，需要汇总教师评价结果。包括线上讨论、课堂互动、案例分析等各项得分情况。",
+  "sampleData": {}
+}

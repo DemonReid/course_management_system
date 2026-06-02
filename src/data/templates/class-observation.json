@@ -1,0 +1,67 @@
+{
+  "id": "class-observation",
+  "name": "听课情况说明",
+  "description": "学院及教研室听课情况说明",
+  "priority": "P2",
+  "category": "教学检查",
+  "checkPhase": [
+    "期中",
+    "期末"
+  ],
+  "aiAutomationLevel": "high",
+  "estimatedTokens": 400,
+  "fields": [
+    {
+      "key": "semester",
+      "label": "学期",
+      "type": "text",
+      "required": true,
+      "autoFill": "currentSemester"
+    },
+    {
+      "key": "checkPhase",
+      "label": "检查阶段",
+      "type": "select",
+      "required": true,
+      "options": [
+        "期中",
+        "期末"
+      ]
+    },
+    {
+      "key": "teacherName",
+      "label": "教师姓名",
+      "type": "text",
+      "required": true,
+      "autoFill": "currentUser"
+    },
+    {
+      "key": "observationDescription",
+      "label": "听课情况说明",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 4
+    }
+  ],
+  "sections": [
+    {
+      "title": "基本信息",
+      "fields": [
+        "semester",
+        "checkPhase",
+        "teacherName"
+      ]
+    },
+    {
+      "title": "听课情况",
+      "fields": [
+        "observationDescription"
+      ]
+    }
+  ],
+  "aiSystemPrompt": "你是贵州中医药大学预防医学教研室的教师，需要撰写学院及教研室听课情况说明。\n要求：说明听课评价表的提交情况。100-200字。",
+  "sampleData": {
+    "observationDescription": "学院及教研室听课情况：\n（1）教研室主任和副主任、院级和校级教学督导专家要交听课评价表的PDF版。\n（2）45岁以上青年教师的听课，要交听课表的PDF版。"
+  }
+}

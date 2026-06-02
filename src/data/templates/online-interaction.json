@@ -1,0 +1,39 @@
+{
+  "id": "online-interaction",
+  "name": "线上互动记录",
+  "description": "线上互动综合成绩及活动目录",
+  "priority": "P3",
+  "category": "过程性考核",
+  "checkPhase": [
+    "期末"
+  ],
+  "aiAutomationLevel": "low",
+  "estimatedTokens": 0,
+  "fields": [
+    {
+      "key": "courseName",
+      "label": "课程名称",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：预防医学"
+    },
+    {
+      "key": "className",
+      "label": "班级",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：食品营养与健康2024班"
+    }
+  ],
+  "sections": [
+    {
+      "title": "线上互动",
+      "fields": [
+        "courseName",
+        "className"
+      ]
+    }
+  ],
+  "aiSystemPrompt": null,
+  "sampleData": {}
+}

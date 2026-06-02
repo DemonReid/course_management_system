@@ -1,0 +1,13 @@
+{
+  "users": [
+    {
+      "id": "admin",
+      "name": "彭芳",
+      "password": "e7cbc649d39043dc728aa728a2ef89da:b037d497278c149f744d7409260ef3570a61b5236d67d068e9816afd7bdbcfa4c600fe4ab0d4012a30612845e64ac2919d16ec2f89bc473a93bd5adebcb27dca",
+      "role": "admin",
+      "department": "预防医学教研室",
+      "createdAt": "2026-06-01T03:35:29.075Z"
+    }
+  ],
+  "pendingInvites": []
+}

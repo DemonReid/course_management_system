@@ -1,0 +1,79 @@
+{
+  "id": "teacher-evaluation-criteria",
+  "name": "教师评价内容及评分要求",
+  "description": "教师评价的评分标准，含线上讨论、课堂互动、案例分析等",
+  "priority": "P2",
+  "category": "过程性考核",
+  "checkPhase": [
+    "期前"
+  ],
+  "aiAutomationLevel": "high",
+  "estimatedTokens": 800,
+  "fields": [
+    {
+      "key": "courseName",
+      "label": "课程名称",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：预防医学"
+    },
+    {
+      "key": "className",
+      "label": "班级",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：食品营养与健康2024班"
+    },
+    {
+      "key": "department",
+      "label": "教研室",
+      "type": "text",
+      "required": true,
+      "defaultValue": "预防医学教研室"
+    },
+    {
+      "key": "onlineDiscussion",
+      "label": "线上问题讨论评分标准",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 4
+    },
+    {
+      "key": "classInteraction",
+      "label": "课堂提问互动评分标准",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 4
+    },
+    {
+      "key": "caseAnalysis",
+      "label": "课堂案例分析评分标准",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 4
+    }
+  ],
+  "sections": [
+    {
+      "title": "基本信息",
+      "fields": [
+        "courseName",
+        "className",
+        "department"
+      ]
+    },
+    {
+      "title": "评分标准",
+      "fields": [
+        "onlineDiscussion",
+        "classInteraction",
+        "caseAnalysis"
+      ]
+    }
+  ],
+  "aiSystemPrompt": "你是贵州中医药大学预防医学教研室的教师，需要制定教师评价的评分标准。\n要求：每项评分标准要包含评分维度、分值分配、具体评分细则。语言简洁规范。",
+  "sampleData": {}
+}

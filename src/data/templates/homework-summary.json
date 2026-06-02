@@ -1,0 +1,61 @@
+{
+  "id": "homework-summary",
+  "name": "作业小结",
+  "description": "作业完成情况的小结",
+  "priority": "P2",
+  "category": "过程性考核",
+  "checkPhase": [
+    "期末"
+  ],
+  "aiAutomationLevel": "high",
+  "estimatedTokens": 500,
+  "fields": [
+    {
+      "key": "courseName",
+      "label": "课程",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：预防医学"
+    },
+    {
+      "key": "className",
+      "label": "班级",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：食品营养与健康2024班"
+    },
+    {
+      "key": "summary",
+      "label": "小结",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 8
+    },
+    {
+      "key": "date",
+      "label": "日期",
+      "type": "date",
+      "required": true,
+      "autoFill": "today"
+    }
+  ],
+  "sections": [
+    {
+      "title": "基本信息",
+      "fields": [
+        "courseName",
+        "className",
+        "date"
+      ]
+    },
+    {
+      "title": "作业小结",
+      "fields": [
+        "summary"
+      ]
+    }
+  ],
+  "aiSystemPrompt": "你是贵州中医药大学预防医学教研室的教师，需要撰写作业小结。包括作业完成情况、常见问题、改进建议等。",
+  "sampleData": {}
+}

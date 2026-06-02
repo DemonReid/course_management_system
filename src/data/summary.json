@@ -1,0 +1,391 @@
+{
+  "generatedAt": "2026-06-01T02:39:19.909Z",
+  "totalTemplates": 30,
+  "byPriority": {
+    "P0": 2,
+    "P1": 4,
+    "P2": 11,
+    "P3": 13
+  },
+  "byCategory": {
+    "教学设计": 1,
+    "过程性考核": 17,
+    "试卷管理": 4,
+    "教学检查": 5,
+    "教学准备": 3
+  },
+  "byCheckPhase": {
+    "期前": 10,
+    "期中": 7,
+    "期末": 20
+  },
+  "templates": [
+    {
+      "id": "teaching-design",
+      "name": "教学设计（教案）",
+      "priority": "P0",
+      "category": "教学设计",
+      "checkPhase": [
+        "期前"
+      ],
+      "aiAutomationLevel": "high",
+      "fieldCount": 22,
+      "aiFieldCount": 13
+    },
+    {
+      "id": "student-analysis-report",
+      "name": "学情分析报告",
+      "priority": "P0",
+      "category": "过程性考核",
+      "checkPhase": [
+        "期前",
+        "期中",
+        "期末"
+      ],
+      "aiAutomationLevel": "high",
+      "fieldCount": 13,
+      "aiFieldCount": 5
+    },
+    {
+      "id": "process-assessment-score",
+      "name": "过程性考核成绩构成登记表",
+      "priority": "P1",
+      "category": "过程性考核",
+      "checkPhase": [
+        "期前"
+      ],
+      "aiAutomationLevel": "medium",
+      "fieldCount": 18,
+      "aiFieldCount": 0
+    },
+    {
+      "id": "midterm-exam-analysis",
+      "name": "中期考核分析",
+      "priority": "P1",
+      "category": "过程性考核",
+      "checkPhase": [
+        "期中"
+      ],
+      "aiAutomationLevel": "high",
+      "fieldCount": 14,
+      "aiFieldCount": 3
+    },
+    {
+      "id": "exam-paper-analysis",
+      "name": "试卷分析及简评",
+      "priority": "P1",
+      "category": "试卷管理",
+      "checkPhase": [
+        "期前"
+      ],
+      "aiAutomationLevel": "high",
+      "fieldCount": 13,
+      "aiFieldCount": 4
+    },
+    {
+      "id": "exam-question-distribution",
+      "name": "结果性考核试题分布双向检查表",
+      "priority": "P1",
+      "category": "试卷管理",
+      "checkPhase": [
+        "期中",
+        "期末"
+      ],
+      "aiAutomationLevel": "medium",
+      "fieldCount": 8,
+      "aiFieldCount": 2
+    },
+    {
+      "id": "teacher-evaluation-criteria",
+      "name": "教师评价内容及评分要求",
+      "priority": "P2",
+      "category": "过程性考核",
+      "checkPhase": [
+        "期前"
+      ],
+      "aiAutomationLevel": "high",
+      "fieldCount": 6,
+      "aiFieldCount": 3
+    },
+    {
+      "id": "teacher-evaluation-result",
+      "name": "教师评价结果",
+      "priority": "P2",
+      "category": "过程性考核",
+      "checkPhase": [
+        "期末"
+      ],
+      "aiAutomationLevel": "medium",
+      "fieldCount": 4,
+      "aiFieldCount": 1
+    },
+    {
+      "id": "teacher-evaluation-records",
+      "name": "教师评价记录材料",
+      "priority": "P2",
+      "category": "过程性考核",
+      "checkPhase": [
+        "期末"
+      ],
+      "aiAutomationLevel": "medium",
+      "fieldCount": 4,
+      "aiFieldCount": 1
+    },
+    {
+      "id": "homework-scoring-criteria",
+      "name": "作业评分标准",
+      "priority": "P2",
+      "category": "过程性考核",
+      "checkPhase": [
+        "期前"
+      ],
+      "aiAutomationLevel": "high",
+      "fieldCount": 4,
+      "aiFieldCount": 1
+    },
+    {
+      "id": "homework-summary",
+      "name": "作业小结",
+      "priority": "P2",
+      "category": "过程性考核",
+      "checkPhase": [
+        "期末"
+      ],
+      "aiAutomationLevel": "high",
+      "fieldCount": 4,
+      "aiFieldCount": 1
+    },
+    {
+      "id": "teaching-innovation",
+      "name": "教学创新改革说明",
+      "priority": "P2",
+      "category": "教学检查",
+      "checkPhase": [
+        "期末"
+      ],
+      "aiAutomationLevel": "high",
+      "fieldCount": 4,
+      "aiFieldCount": 1
+    },
+    {
+      "id": "teaching-research-activities",
+      "name": "教研活动开展情况说明",
+      "priority": "P2",
+      "category": "教学检查",
+      "checkPhase": [
+        "期中",
+        "期末"
+      ],
+      "aiAutomationLevel": "high",
+      "fieldCount": 4,
+      "aiFieldCount": 1
+    },
+    {
+      "id": "class-observation",
+      "name": "听课情况说明",
+      "priority": "P2",
+      "category": "教学检查",
+      "checkPhase": [
+        "期中",
+        "期末"
+      ],
+      "aiAutomationLevel": "high",
+      "fieldCount": 4,
+      "aiFieldCount": 1
+    },
+    {
+      "id": "teaching-design-lecture-note",
+      "name": "教学设计和讲稿说明",
+      "priority": "P2",
+      "category": "教学检查",
+      "checkPhase": [
+        "期中",
+        "期末"
+      ],
+      "aiAutomationLevel": "high",
+      "fieldCount": 3,
+      "aiFieldCount": 1
+    },
+    {
+      "id": "process-assessment-note",
+      "name": "过程性考核说明",
+      "priority": "P2",
+      "category": "教学检查",
+      "checkPhase": [
+        "期中",
+        "期末"
+      ],
+      "aiAutomationLevel": "high",
+      "fieldCount": 3,
+      "aiFieldCount": 1
+    },
+    {
+      "id": "syllabus",
+      "name": "教学大纲",
+      "priority": "P2",
+      "category": "教学准备",
+      "checkPhase": [
+        "期前"
+      ],
+      "aiAutomationLevel": "reference",
+      "fieldCount": 8,
+      "aiFieldCount": 0
+    },
+    {
+      "id": "attendance-record",
+      "name": "考勤表",
+      "priority": "P3",
+      "category": "过程性考核",
+      "checkPhase": [
+        "期末"
+      ],
+      "aiAutomationLevel": "low",
+      "fieldCount": 3,
+      "aiFieldCount": 0
+    },
+    {
+      "id": "pre-course-survey",
+      "name": "学情调查问卷",
+      "priority": "P3",
+      "category": "过程性考核",
+      "checkPhase": [
+        "期前"
+      ],
+      "aiAutomationLevel": "low",
+      "fieldCount": 2,
+      "aiFieldCount": 0
+    },
+    {
+      "id": "post-course-survey",
+      "name": "结课调查问卷",
+      "priority": "P3",
+      "category": "过程性考核",
+      "checkPhase": [
+        "期末"
+      ],
+      "aiAutomationLevel": "low",
+      "fieldCount": 1,
+      "aiFieldCount": 0
+    },
+    {
+      "id": "teaching-feedback",
+      "name": "教学反馈表",
+      "priority": "P3",
+      "category": "过程性考核",
+      "checkPhase": [
+        "期末"
+      ],
+      "aiAutomationLevel": "medium",
+      "fieldCount": 3,
+      "aiFieldCount": 1
+    },
+    {
+      "id": "answer-card-cover",
+      "name": "答题卡专用信封封面",
+      "priority": "P3",
+      "category": "试卷管理",
+      "checkPhase": [
+        "期末"
+      ],
+      "aiAutomationLevel": "low",
+      "fieldCount": 14,
+      "aiFieldCount": 0
+    },
+    {
+      "id": "exam-paper-cover",
+      "name": "试卷封面",
+      "priority": "P3",
+      "category": "试卷管理",
+      "checkPhase": [
+        "期末"
+      ],
+      "aiAutomationLevel": "low",
+      "fieldCount": 4,
+      "aiFieldCount": 0
+    },
+    {
+      "id": "process-assessment-cover",
+      "name": "过程性考核封面",
+      "priority": "P3",
+      "category": "过程性考核",
+      "checkPhase": [
+        "期末"
+      ],
+      "aiAutomationLevel": "low",
+      "fieldCount": 4,
+      "aiFieldCount": 0
+    },
+    {
+      "id": "teaching-design-cover",
+      "name": "课程教学设计封面",
+      "priority": "P3",
+      "category": "教学准备",
+      "checkPhase": [
+        "期前"
+      ],
+      "aiAutomationLevel": "low",
+      "fieldCount": 6,
+      "aiFieldCount": 0
+    },
+    {
+      "id": "lecture-note-cover",
+      "name": "课程讲稿封面",
+      "priority": "P3",
+      "category": "教学准备",
+      "checkPhase": [
+        "期前"
+      ],
+      "aiAutomationLevel": "low",
+      "fieldCount": 5,
+      "aiFieldCount": 0
+    },
+    {
+      "id": "student-homework",
+      "name": "学生作业",
+      "priority": "P3",
+      "category": "过程性考核",
+      "checkPhase": [
+        "期末"
+      ],
+      "aiAutomationLevel": "low",
+      "fieldCount": 3,
+      "aiFieldCount": 0
+    },
+    {
+      "id": "self-study",
+      "name": "自主学习材料",
+      "priority": "P3",
+      "category": "过程性考核",
+      "checkPhase": [
+        "期末"
+      ],
+      "aiAutomationLevel": "low",
+      "fieldCount": 2,
+      "aiFieldCount": 0
+    },
+    {
+      "id": "online-interaction",
+      "name": "线上互动记录",
+      "priority": "P3",
+      "category": "过程性考核",
+      "checkPhase": [
+        "期末"
+      ],
+      "aiAutomationLevel": "low",
+      "fieldCount": 2,
+      "aiFieldCount": 0
+    },
+    {
+      "id": "material-directory",
+      "name": "资料装订目录",
+      "priority": "P3",
+      "category": "过程性考核",
+      "checkPhase": [
+        "期末"
+      ],
+      "aiAutomationLevel": "medium",
+      "fieldCount": 3,
+      "aiFieldCount": 1
+    }
+  ]
+}

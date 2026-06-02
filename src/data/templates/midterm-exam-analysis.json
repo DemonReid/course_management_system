@@ -1,0 +1,163 @@
+{
+  "id": "midterm-exam-analysis",
+  "name": "中期考核分析",
+  "description": "中期考核试卷分析及简评，含考试情况、分数统计、评价",
+  "priority": "P1",
+  "category": "过程性考核",
+  "checkPhase": [
+    "期中"
+  ],
+  "aiAutomationLevel": "high",
+  "estimatedTokens": 1500,
+  "fields": [
+    {
+      "key": "semester",
+      "label": "学期",
+      "type": "text",
+      "required": true,
+      "autoFill": "currentSemester"
+    },
+    {
+      "key": "courseName",
+      "label": "课程",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：预防医学"
+    },
+    {
+      "key": "teacherName",
+      "label": "任课教师",
+      "type": "text",
+      "required": true,
+      "autoFill": "currentUser"
+    },
+    {
+      "key": "className",
+      "label": "班级",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：食品营养与健康2024班"
+    },
+    {
+      "key": "examCount",
+      "label": "考试人数",
+      "type": "number",
+      "required": true
+    },
+    {
+      "key": "examDate",
+      "label": "考试时间",
+      "type": "date",
+      "required": true
+    },
+    {
+      "key": "examScope",
+      "label": "考核范围（涉及章节）",
+      "type": "longtext",
+      "required": true,
+      "placeholder": "如：绪论、环境与健康、生活环境与健康...",
+      "rows": 3
+    },
+    {
+      "key": "examFormat",
+      "label": "考核形式",
+      "type": "select",
+      "required": true,
+      "options": [
+        "学习通线上考试-随机抽题",
+        "学习通线上考试-统一试卷",
+        "纸质考试",
+        "其他"
+      ]
+    },
+    {
+      "key": "questionTypes",
+      "label": "题型说明",
+      "type": "longtext",
+      "required": true,
+      "rows": 3
+    },
+    {
+      "key": "scoreAnalysis",
+      "label": "分数统计分析",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 4
+    },
+    {
+      "key": "examConduct",
+      "label": "考试纪律评价",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 2
+    },
+    {
+      "key": "overallEvaluation",
+      "label": "总体评价与结论",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 3
+    },
+    {
+      "key": "averageScore",
+      "label": "平均分（如已知）",
+      "type": "number",
+      "required": false
+    },
+    {
+      "key": "passRate",
+      "label": "及格率（%）",
+      "type": "number",
+      "required": false
+    }
+  ],
+  "sections": [
+    {
+      "title": "基本信息",
+      "fields": [
+        "semester",
+        "courseName",
+        "teacherName",
+        "className",
+        "examCount",
+        "examDate"
+      ]
+    },
+    {
+      "title": "考核说明",
+      "fields": [
+        "examScope",
+        "examFormat",
+        "questionTypes"
+      ]
+    },
+    {
+      "title": "成绩分析",
+      "fields": [
+        "scoreAnalysis",
+        "examConduct",
+        "overallEvaluation",
+        "averageScore",
+        "passRate"
+      ]
+    }
+  ],
+  "aiSystemPrompt": "你是贵州中医药大学预防医学教研室的教师，需要撰写中期考核分析报告。\n\n要求：\n1. 考核试卷分析要说明考核范围、题型、组卷方式\n2. 分数统计要包含平均分、各分数段人数分布\n3. 评价要客观，既肯定成绩也指出不足\n4. 如果是线上随机抽题，要说明无法生成系统分析报告的原因\n5. 语言规范、数据准确\n6. 总字数500-800字",
+  "sampleData": {
+    "semester": "2025-2026学年第1学期",
+    "courseName": "预防医学",
+    "teacherName": "彭芳",
+    "className": "养老服务管理2023班",
+    "examCount": 100,
+    "examDate": "2025-11-05",
+    "examScope": "绪论、环境与健康、生活环境与健康、职业环境与健康和食物与健康",
+    "examFormat": "学习通线上考试-随机抽题",
+    "questionTypes": "单选题80道（含A1型题、A2型题、B型题），多选题10题，组成20套试卷",
+    "scoreAnalysis": "考试分数统计显示平均分93分，80分以上99人，占99%，有1人为75分。",
+    "examConduct": "考试过程中大部分学生都比较自觉，能较好的独立完成考试。",
+    "overallEvaluation": "从考试成绩来看，大部分学生能较好的掌握前期知识，考试达到了督促学生学习的目的。"
+  }
+}

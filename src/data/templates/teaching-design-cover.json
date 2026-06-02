@@ -1,0 +1,76 @@
+{
+  "id": "teaching-design-cover",
+  "name": "课程教学设计封面",
+  "description": "教学设计装订封面",
+  "priority": "P3",
+  "category": "教学准备",
+  "checkPhase": [
+    "期前"
+  ],
+  "aiAutomationLevel": "low",
+  "estimatedTokens": 200,
+  "fields": [
+    {
+      "key": "college",
+      "label": "学院",
+      "type": "text",
+      "required": true,
+      "defaultValue": "基础医学院/公共卫生学院"
+    },
+    {
+      "key": "courseName",
+      "label": "课程名称",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：预防医学"
+    },
+    {
+      "key": "targetMajor",
+      "label": "适用专业",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：食品营养与健康"
+    },
+    {
+      "key": "department",
+      "label": "课程所属教研室",
+      "type": "text",
+      "required": true,
+      "defaultValue": "预防医学教研室"
+    },
+    {
+      "key": "teacherTitle",
+      "label": "任课教师及职称",
+      "type": "text",
+      "required": true,
+      "autoFill": "currentUser"
+    },
+    {
+      "key": "directorSignature",
+      "label": "教研室主任签字",
+      "type": "text",
+      "required": false
+    }
+  ],
+  "sections": [
+    {
+      "title": "封面信息",
+      "fields": [
+        "college",
+        "courseName",
+        "targetMajor",
+        "department",
+        "teacherTitle",
+        "directorSignature"
+      ]
+    }
+  ],
+  "aiSystemPrompt": null,
+  "sampleData": {
+    "college": "基础医学院/公共卫生学院",
+    "courseName": "预防医学",
+    "targetMajor": "食品营养与健康",
+    "department": "预防医学教研室",
+    "teacherTitle": "彭芳 副教授"
+  }
+}

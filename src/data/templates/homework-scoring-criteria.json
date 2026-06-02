@@ -1,0 +1,61 @@
+{
+  "id": "homework-scoring-criteria",
+  "name": "作业评分标准",
+  "description": "作业评分的具体标准和要求",
+  "priority": "P2",
+  "category": "过程性考核",
+  "checkPhase": [
+    "期前"
+  ],
+  "aiAutomationLevel": "high",
+  "estimatedTokens": 600,
+  "fields": [
+    {
+      "key": "courseName",
+      "label": "课程",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：预防医学"
+    },
+    {
+      "key": "homeworkContent",
+      "label": "作业内容",
+      "type": "longtext",
+      "required": true,
+      "rows": 3
+    },
+    {
+      "key": "scoringCriteria",
+      "label": "评分标准",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 8
+    },
+    {
+      "key": "department",
+      "label": "教研室",
+      "type": "text",
+      "required": true,
+      "defaultValue": "预防医学教研室"
+    }
+  ],
+  "sections": [
+    {
+      "title": "基本信息",
+      "fields": [
+        "courseName",
+        "department"
+      ]
+    },
+    {
+      "title": "作业与评分",
+      "fields": [
+        "homeworkContent",
+        "scoringCriteria"
+      ]
+    }
+  ],
+  "aiSystemPrompt": "你是贵州中医药大学预防医学教研室的教师，需要制定作业评分标准。要求：评分标准要具体、可操作，包含评分维度和分值分配。",
+  "sampleData": {}
+}

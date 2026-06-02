@@ -1,0 +1,135 @@
+{
+  "id": "exam-paper-analysis",
+  "name": "试卷分析及简评",
+  "description": "期末考试试卷分析及简评",
+  "priority": "P1",
+  "category": "试卷管理",
+  "checkPhase": [
+    "期前"
+  ],
+  "aiAutomationLevel": "high",
+  "estimatedTokens": 1500,
+  "fields": [
+    {
+      "key": "courseName",
+      "label": "课程名称",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：预防医学"
+    },
+    {
+      "key": "className",
+      "label": "班级",
+      "type": "text",
+      "required": true,
+      "placeholder": "如：食品营养与健康2024班"
+    },
+    {
+      "key": "semester",
+      "label": "学期",
+      "type": "text",
+      "required": true,
+      "autoFill": "currentSemester"
+    },
+    {
+      "key": "totalStudents",
+      "label": "应考人数",
+      "type": "number",
+      "required": true
+    },
+    {
+      "key": "actualStudents",
+      "label": "实考人数",
+      "type": "number",
+      "required": true
+    },
+    {
+      "key": "avgScore",
+      "label": "平均分",
+      "type": "number",
+      "required": true
+    },
+    {
+      "key": "highestScore",
+      "label": "最高分",
+      "type": "number",
+      "required": true
+    },
+    {
+      "key": "lowestScore",
+      "label": "最低分",
+      "type": "number",
+      "required": true
+    },
+    {
+      "key": "passRate",
+      "label": "及格率（%）",
+      "type": "number",
+      "required": true
+    },
+    {
+      "key": "scoreDistribution",
+      "label": "成绩分布说明",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 4
+    },
+    {
+      "key": "paperQualityAnalysis",
+      "label": "试卷质量分析",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 4
+    },
+    {
+      "key": "problems",
+      "label": "存在问题",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 3
+    },
+    {
+      "key": "improvementSuggestions",
+      "label": "改进建议",
+      "type": "longtext",
+      "required": true,
+      "aiGenerated": true,
+      "rows": 3
+    }
+  ],
+  "sections": [
+    {
+      "title": "基本信息",
+      "fields": [
+        "courseName",
+        "className",
+        "semester",
+        "totalStudents",
+        "actualStudents"
+      ]
+    },
+    {
+      "title": "成绩统计",
+      "fields": [
+        "avgScore",
+        "highestScore",
+        "lowestScore",
+        "passRate",
+        "scoreDistribution"
+      ]
+    },
+    {
+      "title": "分析与建议",
+      "fields": [
+        "paperQualityAnalysis",
+        "problems",
+        "improvementSuggestions"
+      ]
+    }
+  ],
+  "aiSystemPrompt": "你是贵州中医药大学预防医学教研室的教师，需要撰写期末试卷分析及简评。\n\n要求：\n1. 成绩分布要说明各分数段人数及占比\n2. 试卷质量分析要评价难度、区分度、信度\n3. 存在问题要结合具体知识点或题型\n4. 改进建议要可操作，针对教学或命题\n5. 语言规范、数据准确\n6. 总字数600-1000字",
+  "sampleData": {}
+}
