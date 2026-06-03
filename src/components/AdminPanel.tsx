@@ -2,13 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
-import {
-  getUsers,
-  saveUsers,
-  addUser,
-  type StoredUser,
-} from '@/lib/client-storage'
-import { hashPassword } from '@/lib/client-auth'
 
 interface UserDisplay {
   id: string
@@ -19,7 +12,7 @@ interface UserDisplay {
 }
 
 export default function AdminPanel() {
-  const { user, isAdmin } = useAuth()
+  const { isAdmin } = useAuth()
   const [users, setUsers] = useState<UserDisplay[]>([])
   const [newUserName, setNewUserName] = useState('')
   const [newUserPassword, setNewUserPassword] = useState('')
@@ -34,17 +27,13 @@ export default function AdminPanel() {
     }
   }, [isAdmin])
 
-  const fetchUsers = () => {
+  const fetchUsers = async () => {
     try {
-      const usersData = getUsers()
-      const displayUsers = usersData.users.map((u: StoredUser) => ({
-        id: u.id,
-        name: u.name,
-        role: u.role,
-        department: u.department,
-        createdAt: u.createdAt,
-      }))
-      setUsers(displayUsers)
+      const res = await fetch('/api/users')
+      const data = await res.json()
+      if (res.ok) {
+        setUsers(data.users || [])
+      }
     } catch (error) {
       console.error('Failed to fetch users:', error)
     }
@@ -59,7 +48,18 @@ export default function AdminPanel() {
     setSuccess('')
 
     try {
-      await addUser(newUserName.trim(), newUserPassword.trim(), newUserDept.trim())
+      const res = await fetch('/api/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: newUserName.trim(),
+          password: newUserPassword.trim(),
+          department: newUserDept.trim(),
+        }),
+      })
+
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || '添加失败')
 
       setNewUserName('')
       setNewUserPassword('')
@@ -72,18 +72,19 @@ export default function AdminPanel() {
     }
   }
 
-  const handleDeleteUser = (userId: string, userName: string) => {
+  const handleDeleteUser = async (userId: string, userName: string) => {
     if (!confirm(`确定要删除用户 "${userName}" 吗？此操作不可撤销。`)) return
 
     try {
-      const usersData = getUsers()
-      usersData.users = usersData.users.filter((u) => u.id !== userId)
-      saveUsers(usersData)
+      const res = await fetch(`/api/users?id=${userId}`, { method: 'DELETE' })
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || '删除失败')
+      }
       setSuccess(`用户 "${userName}" 已删除`)
       fetchUsers()
-    } catch (error) {
-      console.error('Delete failed:', error)
-      alert('删除失败')
+    } catch (err) {
+      alert((err as Error).message)
     }
   }
 
@@ -95,19 +96,15 @@ export default function AdminPanel() {
     }
 
     try {
-      const usersData = getUsers()
-      const userIndex = usersData.users.findIndex((u) => u.id === userId)
-      if (userIndex === -1) {
-        alert('用户不存在')
-        return
-      }
-
-      usersData.users[userIndex].password = await hashPassword(newPassword)
-      saveUsers(usersData)
+      const res = await fetch('/api/users', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId, password: newPassword }),
+      })
+      if (!res.ok) throw new Error('重置失败')
       setSuccess(`用户 "${userName}" 的密码已重置`)
-    } catch (error) {
-      console.error('Reset failed:', error)
-      alert('重置失败')
+    } catch (err) {
+      alert((err as Error).message)
     }
   }
 
@@ -134,13 +131,13 @@ export default function AdminPanel() {
         </div>
         <div className="card text-center">
           <div className="text-3xl font-bold text-gold-600">
-            {users.filter(u => u.role === 'admin').length}
+            {users.filter((u) => u.role === 'admin').length}
           </div>
           <div className="text-sm text-gray-600 mt-1">管理员</div>
         </div>
         <div className="card text-center">
           <div className="text-3xl font-bold text-primary-600">
-            {users.filter(u => u.role === 'teacher').length}
+            {users.filter((u) => u.role === 'teacher').length}
           </div>
           <div className="text-sm text-gray-600 mt-1">教师</div>
         </div>
@@ -190,9 +187,7 @@ export default function AdminPanel() {
       <div className="card">
         <h3 className="text-xl font-serif text-primary-900 mb-4">
           用户名单
-          <span className="ml-2 text-sm font-normal text-gray-500">
-            共 {users.length} 人
-          </span>
+          <span className="ml-2 text-sm font-normal text-gray-500">共 {users.length} 人</span>
         </h3>
 
         <div className="space-y-2">
@@ -239,11 +234,7 @@ export default function AdminPanel() {
           ))}
         </div>
 
-        {users.length === 0 && (
-          <div className="text-center py-8 text-gray-500">
-            暂无用户
-          </div>
-        )}
+        {users.length === 0 && <div className="text-center py-8 text-gray-500">暂无用户</div>}
       </div>
     </div>
   )

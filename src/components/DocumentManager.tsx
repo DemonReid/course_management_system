@@ -2,28 +2,35 @@
 
 import { useState, useEffect } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
-import {
-  getFilteredDocuments,
-  deleteDocument,
-  type StoredDocument,
-} from '@/lib/client-storage'
+
+interface DocDisplay {
+  id: string
+  filename: string
+  templateName: string
+  uploaderId: string
+  uploaderName: string
+  uploadDate: string
+  size: number
+}
 
 export default function DocumentManager() {
   const { user, isAdmin } = useAuth()
-  const [documents, setDocuments] = useState<StoredDocument[]>([])
-  const [grouped, setGrouped] = useState<Record<string, StoredDocument[]>>({})
+  const [documents, setDocuments] = useState<DocDisplay[]>([])
+  const [grouped, setGrouped] = useState<Record<string, DocDisplay[]>>({})
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetchDocuments()
   }, [])
 
-  const fetchDocuments = () => {
+  const fetchDocuments = async () => {
     try {
-      if (!user) return
-      const result = getFilteredDocuments(user.id, user.role)
-      setDocuments(result.documents)
-      setGrouped(result.grouped)
+      const res = await fetch('/api/documents')
+      const data = await res.json()
+      if (res.ok) {
+        setDocuments(data.documents || [])
+        setGrouped(data.grouped || {})
+      }
     } catch (error) {
       console.error('Failed to fetch documents:', error)
     } finally {
@@ -31,14 +38,14 @@ export default function DocumentManager() {
     }
   }
 
-  const handleDelete = (docId: string) => {
+  const handleDelete = async (docId: string) => {
     if (!confirm('确定要删除此文档吗？')) return
 
     try {
-      deleteDocument(docId)
+      const res = await fetch(`/api/documents?id=${docId}`, { method: 'DELETE' })
+      if (!res.ok) throw new Error('删除失败')
       fetchDocuments()
     } catch (error) {
-      console.error('Delete failed:', error)
       alert('删除失败')
     }
   }
@@ -66,9 +73,7 @@ export default function DocumentManager() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-serif text-primary-900">系统现有文档</h2>
-        <span className="text-sm text-gray-600">
-          共 {documents.length} 个文档
-        </span>
+        <span className="text-sm text-gray-600">共 {documents.length} 个文档</span>
       </div>
 
       {Object.keys(grouped).length === 0 ? (
@@ -84,9 +89,7 @@ export default function DocumentManager() {
             <div key={teacherName} className="card">
               <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-200">
                 <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
-                  <span className="text-primary-900 font-semibold">
-                    {teacherName.charAt(0)}
-                  </span>
+                  <span className="text-primary-900 font-semibold">{teacherName.charAt(0)}</span>
                 </div>
                 <div>
                   <h3 className="font-semibold text-primary-900">{teacherName}</h3>
@@ -112,14 +115,22 @@ export default function DocumentManager() {
                       </div>
                     </div>
 
-                    {(isAdmin || doc.uploaderName === user?.name) && (
-                      <button
-                        onClick={() => handleDelete(doc.id)}
-                        className="ml-4 text-red-600 hover:text-red-800 text-sm"
+                    <div className="flex items-center gap-3 ml-4">
+                      <a
+                        href={`/api/documents/${doc.id}/download`}
+                        className="text-primary-600 hover:text-primary-800 text-sm"
                       >
-                        删除
-                      </button>
-                    )}
+                        下载
+                      </a>
+                      {(isAdmin || doc.uploaderName === user?.name) && (
+                        <button
+                          onClick={() => handleDelete(doc.id)}
+                          className="text-red-600 hover:text-red-800 text-sm"
+                        >
+                          删除
+                        </button>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>

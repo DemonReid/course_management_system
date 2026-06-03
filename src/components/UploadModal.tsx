@@ -3,7 +3,6 @@
 import { useState, useRef } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { Template } from '@/lib/types'
-import { uploadDocument } from '@/lib/client-storage'
 
 interface UploadModalProps {
   template: Template
@@ -33,7 +32,18 @@ export default function UploadModal({ template, onClose, onUploadSuccess }: Uplo
     setError('')
 
     try {
-      await uploadDocument(file, template.name, user.id, user.name)
+      const formData = new FormData()
+      formData.append('file', file)
+      formData.append('templateName', template.name)
+
+      const res = await fetch('/api/documents', {
+        method: 'POST',
+        body: formData,
+      })
+
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || '上传失败')
+
       onUploadSuccess()
       onClose()
     } catch (err) {
@@ -56,9 +66,7 @@ export default function UploadModal({ template, onClose, onUploadSuccess }: Uplo
         <div className="space-y-4">
           <div>
             <label className="label">模板类型</label>
-            <div className="bg-gray-50 px-4 py-3 rounded-lg text-gray-900">
-              {template.name}
-            </div>
+            <div className="bg-gray-50 px-4 py-3 rounded-lg text-gray-900">{template.name}</div>
           </div>
 
           <div>
@@ -70,9 +78,7 @@ export default function UploadModal({ template, onClose, onUploadSuccess }: Uplo
               accept=".docx,.doc,.pdf"
               className="input-field"
             />
-            <p className="text-xs text-gray-500 mt-1">
-              支持 .docx, .doc, .pdf 格式
-            </p>
+            <p className="text-xs text-gray-500 mt-1">支持 .docx, .doc, .pdf 格式</p>
           </div>
 
           {file && (

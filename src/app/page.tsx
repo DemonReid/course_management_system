@@ -14,10 +14,22 @@ type View = 'dashboard' | 'generate' | 'documents' | 'admin'
 type AuthView = 'login' | 'register'
 
 export default function Home() {
-  const { user, logout, isAdmin } = useAuth()
+  const { user, logout, isAdmin, loading } = useAuth()
   const [view, setView] = useState<View>('dashboard')
   const [authView, setAuthView] = useState<AuthView>('login')
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null)
+
+  // Show loading spinner while checking session
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-primary-100">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-primary-900 border-t-transparent"></div>
+          <p className="mt-4 text-primary-900 text-lg">加载中...</p>
+        </div>
+      </div>
+    )
+  }
 
   // Show auth pages if not authenticated
   if (!user) {
